@@ -14,13 +14,14 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit} className={styles["login-form"]}>
-      <h2>Login</h2>
+      <h2>LogIn</h2>
       <label>
         <span>email:</span>
         <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          required
         />
       </label>
       <label>
@@ -29,6 +30,7 @@ function Login() {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          required
         />
       </label>
       <button className="btn">Login</button>
