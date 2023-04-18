@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { useSignup } from "../../hooks/useSignup";
 
 // styles
 import styles from "./Signup.module.css";
 
 const Signup = () => {
-  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const { signup, isPending, error } = useSignup();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password, displayName);
+    signup(email, password, displayName);
   };
 
   return (
@@ -43,7 +45,13 @@ const Signup = () => {
           required
         />
       </label>
-      <button className="btn">SignUp</button>
+      {!isPending && <button className="btn">SignUp</button>}
+      {isPending && (
+        <button className="btn" disabled>
+          loading...
+        </button>
+      )}
+      {error && <p>{error}</p>}
     </form>
   );
 };

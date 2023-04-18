@@ -3,8 +3,9 @@ import { projectAuth } from "../firebase/config";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(false); // for loading state
 
+  // this three fields are coming from the form what  is users entered
   const signup = async (email, password, displayName) => {
     setError(null);
     setIsPending(true);
