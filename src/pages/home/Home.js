@@ -10,9 +10,13 @@ import React from "react";
 import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 
-const Home = () => {
+export default function Home() {
   const { user } = useAuthContext();
-  const { documents, error } = useCollection("transactions");
+  const { documents, error } = useCollection("transactions", [
+    "uid",
+    "==",
+    user.uid,
+  ]);
 
   return (
     <div className={styles.container}>
@@ -25,6 +29,4 @@ const Home = () => {
       </div>
     </div>
   );
-};
-
-export default Home;
+}
